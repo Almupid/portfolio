@@ -1,0 +1,608 @@
+/* Variabel CSS untuk konsistensi tema */
+:root {
+    --primary-color: #71b1e9;
+    --primary-dark: #5a94d1;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --dark-bg: rgb(20, 22, 22);
+    --card-bg: rgba(30, 32, 32, 0.8);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+}
+
+/* Reset dan gaya dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--light-color);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--dark-bg);
+}
+
+/* SVG Background dengan animasi */
+svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1518 100%);
+    filter: sepia(10%) brightness(90%);
+    z-index: -1;
+    opacity: 0.7;
+}
+
+/* Container utama */
+.certificates-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Judul halaman */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--light-color);
+    position: relative;
+    padding-bottom: 20px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(113, 177, 233, 0.4);
+}
+
+.page-subtitle {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #a0aec0;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Grid layout untuk sertifikat */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Kartu sertifikat yang lebih modern */
+.certificate-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 1px solid rgba(113, 177, 233, 0.2);
+    backdrop-filter: blur(12px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transform: translateY(0);
+}
+
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    opacity: 0.9;
+    z-index: 2;
+}
+
+.certificate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(113, 177, 233, 0.4);
+}
+
+.certificate-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(113, 177, 233, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.certificate-card:hover::after {
+    opacity: 1;
+}
+
+.certificate-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    background: #1a202c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(113, 177, 233, 0.2);
+}
+
+.certificate-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.certificate-card:hover .certificate-image {
+    transform: scale(1.08);
+}
+
+.certificate-info {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.certificate-title {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--light-color);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.certificate-issuer {
+    font-size: 1rem;
+    color: #a0aec0;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.certificate-issuer i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.certificate-date {
+    font-size: 0.9rem;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    font-weight: 400;
+}
+
+.certificate-date i {
+    margin-right: 10px;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+/* Modal untuk tampilan gambar penuh */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98);
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(8px);
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+    border: 2px solid rgba(113, 177, 233, 0.3);
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1001;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.close-button:hover {
+    color: var(--accent-color);
+    transform: rotate(90deg) scale(1.1);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Loading state */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 70px;
+    color: #a0aec0;
+    font-size: 1rem;
+    border-top: 1px solid rgba(74, 85, 104, 0.3);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+}
+
+/* Animasi */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi untuk kartu saat dimuat */
+.certificate-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.certificate-card:nth-child(1) { animation-delay: 0.1s; }
+.certificate-card:nth-child(2) { animation-delay: 0.2s; }
+.certificate-card:nth-child(3) { animation-delay: 0.3s; }
+.certificate-card:nth-child(4) { animation-delay: 0.4s; }
+.certificate-card:nth-child(5) { animation-delay: 0.5s; }
+.certificate-card:nth-child(6) { animation-delay: 0.6s; }
+.certificate-card:nth-child(7) { animation-delay: 0.7s; }
+
+/* Responsivitas */
+@media (max-width: 1024px) {
+    .certificates-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    
+    .page-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificates-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        padding-bottom: 15px;
+    }
+    
+    .page-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+    
+    .certificate-image-container {
+        height: 200px;
+    }
+    
+    .certificate-info {
+        padding: 20px;
+    }
+    
+    .close-button {
+        top: 20px;
+        right: 25px;
+        font-size: 35px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        max-height: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .certificate-card {
+        max-width: 100%;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .close-button {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        max-height: 85%;
+    }
+    
+    .certificates-container {
+        padding: 30px 15px;
+    }
+}
+
+/* Efek hover untuk touch devices */
+@media (hover: none) {
+    .certificate-card:hover {
+        transform: none;
+        box-shadow: var(--shadow);
+    }
+    
+    .certificate-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 32, 32, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Perbaikan untuk navbar */
+.container-navbar {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  z-index: 10;
+}
+
+.ul-navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: rgba(30, 32, 32, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 5px 15px; /* Ditambah padding horizontal */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(113, 177, 233, 0.1);
+  gap: 5px; /* Menambahkan gap antara item */
+}
+
+.li-navbar {
+  margin: 0; /* Dihapus margin horizontal */
+  position: relative; /* Untuk positioning yang tepat */
+}
+
+.li-navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 8px 18px; /* Ditambah padding horizontal */
+  border-radius: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: block; /* Memastikan area klik penuh */
+  white-space: nowrap; /* Mencegah teks wrap */
+}
+
+/* Perbaikan hover effect */
+.li-navbar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 177, 233, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: -1; /* Pastikan di belakang teks */
+}
+
+.li-navbar a:hover::before {
+  left: 100%;
+}
+
+.li-navbar a:hover {
+  color: var(--primary-color);
+  background: rgba(113, 177, 233, 0.1);
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 1200px) {
+  .container-navbar {
+    right: 80px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-navbar {
+    right: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-navbar {
+    right: 30px;
+    top: 20px;
+  }
+  
+  .ul-navbar {
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 0; /* Hapus gap untuk mobile */
+  }
+  
+  .li-navbar {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-navbar {
+    right: 15px;
+    top: 15px;
+  }
+  
+  .ul-navbar {
+    padding: 8px;
+  }
+  
+  .li-navbar a {
+    padding: 8px 15px;
+  }
+}

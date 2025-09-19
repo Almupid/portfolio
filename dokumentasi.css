@@ -1,0 +1,627 @@
+/* VARIABEL WARNA UNTUK KONSISTENSI */
+:root {
+  --primary-color: #71b1e9;
+  --primary-dark: #5a94d1;
+  --secondary-color: #ff6b6b;
+  --dark-bg: rgb(20, 22, 22);
+  --text-color: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(30, 32, 32, 0.4);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+/* GAYA DASAR */
+body,
+html {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: none;
+  touch-action: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1518 100%);
+  filter: sepia(10%) brightness(90%);
+  /* PERBAIKAN: Tambahkan properti ini agar elemen di bawahnya bisa diklik */
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Perbaikan untuk navbar */
+.container-navbar {
+  position: absolute;
+  top: 40px;
+  right: 195px;
+  /* PERBAIKAN: Naikkan z-index agar selalu di atas */
+  z-index: 999;
+}
+
+.ul-navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: rgba(30, 32, 32, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 5px 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(113, 177, 233, 0.1);
+  gap: 5px;
+}
+
+.li-navbar {
+  margin: 0;
+  position: relative;
+}
+
+.li-navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+
+/* Perbaikan hover effect */
+.li-navbar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 177, 233, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.li-navbar a:hover::before {
+  left: 100%;
+}
+
+.li-navbar a:hover {
+  color: var(--primary-color);
+  background: rgba(113, 177, 233, 0.1);
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 1200px) {
+  .container-navbar {
+    right: 80px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-navbar {
+    right: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-navbar {
+    right: 30px;
+    top: 20px;
+  }
+
+  .ul-navbar {
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 0;
+  }
+
+  .li-navbar {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-navbar {
+    right: 15px;
+    top: 15px;
+  }
+
+  .ul-navbar {
+    padding: 8px;
+  }
+
+  .li-navbar a {
+    padding: 8px 15px;
+  }
+}
+
+/* HEADER DOKUMENTASI */
+.doc-header {
+  text-align: center;
+  padding: 150px 20px 50px;
+  color: var(--text-color);
+  position: relative;
+  z-index: 10;
+}
+
+.doc-header h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #ffffff, var(--primary-color), #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s linear infinite;
+}
+
+.doc-header p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* CONTAINER UTAMA UNTUK SEMUA BLOK KONTEN */
+.content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto 50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* CONTAINER DOKUMENTASI */
+.main-content-asj,
+.main-content-elk,
+.main-content-afj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(113, 177, 233, 0.1);
+  transition: var(--transition);
+}
+
+.main-content-asj:hover,
+.main-content-elk:hover,
+.main-content-afj:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(113, 177, 233, 0.2);
+  border-color: rgba(113, 177, 233, 0.3);
+}
+
+/* Kontainer untuk gambar dan judul */
+.doc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.doc-container h1 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: white;
+  white-space: nowrap;
+}
+
+/* Style untuk gambar */
+.doc-container img {
+  border-radius: 20%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid rgba(113, 177, 233, 0.3);
+  transition: var(--transition);
+}
+
+.doc-container img:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+}
+
+/* KONTainer TOMBOL DOKUMENTASI */
+.doc-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+/* GAYA UNTUK TOMBOL DOKUMENTASI */
+.doc-button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: var(--transition);
+  border: 1px solid rgba(113, 177, 233, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 177, 233, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.doc-button:hover::before {
+  left: 100%;
+}
+
+.doc-button:hover {
+  background-color: rgba(113, 177, 233, 0.1);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.doc-button span {
+  z-index: 1;
+}
+
+.doc-button small {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+.coming-soon {
+  opacity: 0.7;
+}
+
+.coming-soon:hover {
+  opacity: 1;
+}
+
+/* CSS untuk tombol donasi dan modal */
+.donate-button-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.donate-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.donate-button:hover {
+  background-color: var(--primary-color);
+  color: #000;
+  border-color: var(--primary-color);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--dark-bg);
+  margin: 15% auto;
+  padding: 25px;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  color: white;
+  position: relative;
+  box-shadow: 0 5px 25px rgba(113, 177, 233, 0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close:hover,
+.close:focus {
+  color: var(--primary-color);
+  text-decoration: none;
+  transform: rotate(90deg);
+}
+
+.account-info {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: rgba(113, 177, 233, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(113, 177, 233, 0.3);
+}
+
+#copy-btn {
+  padding: 10px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+#copy-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark) 0%,
+    var(--primary-color) 100%
+  );
+  transform: translateY(-2px);
+}
+
+/* ANIMASI */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* MEDIA QUERIES UNTUK RESPONSIVITAS */
+@media (max-width: 1200px) {
+  .container-navbar {
+    right: 80px;
+  }
+
+  .content-wrapper {
+    gap: 30px;
+  }
+
+  .main-content-asj,
+  .main-content-elk,
+  .main-content-afj {
+    width: 320px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-navbar {
+    right: 50px;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-content-asj,
+  .main-content-elk,
+  .main-content-afj {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .doc-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-navbar {
+    position: fixed;
+    right: 20px;
+    top: 15px;
+  }
+
+  .ul-navbar {
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 0;
+  }
+
+  .li-navbar {
+    margin: 5px 0;
+  }
+
+  .doc-header {
+    padding: 120px 20px 30px;
+  }
+
+  .doc-header h1 {
+    font-size: 2rem;
+  }
+
+  .doc-header p {
+    font-size: 1rem;
+  }
+
+  .donate-button-container {
+    top: 15px;
+    left: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-navbar {
+    right: 15px;
+    top: 10px;
+  }
+
+  .ul-navbar {
+    padding: 8px;
+  }
+
+  .li-navbar a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .doc-header {
+    padding: 100px 15px 20px;
+  }
+
+  .doc-container h1 {
+    font-size: 1.3rem;
+  }
+
+  .doc-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+}
+
+/* Gaya untuk modal PDF - POSISI DIPERBAIKI */
+.pdf-modal-content {
+  width: 90%;
+  max-width: 1000px;
+  height: 85%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+}
+
+.pdf-modal-content h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.pdf-viewer-container {
+  flex: 1;
+  border: 1px solid rgba(113, 177, 233, 0.3);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#pdf-viewer {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.close-pdf {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 11;
+}
+
+.close-pdf:hover,
+.close-pdf:focus {
+  color: var(--primary-color);
+  text-decoration: none;
+  transform: rotate(90deg);
+}
+
+/* Media queries untuk modal PDF */
+@media (max-width: 768px) {
+  .pdf-modal-content {
+    width: 95%;
+    height: 80%;
+    padding: 15px;
+    margin: 2% auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-modal-content {
+    width: 98%;
+    height: 75%;
+    padding: 10px;
+    margin: 1% auto;
+  }
+
+  .pdf-modal-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .close-pdf {
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+  }
+}

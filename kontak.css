@@ -1,0 +1,450 @@
+/* VARIABEL WARNA UNTUK KONSISTENSI */
+:root {
+  --primary-color: #71b1e9;
+  --primary-dark: #5a94d1;
+  --secondary-color: #ff6b6b;
+  --dark-bg: rgb(20, 22, 22);
+  --text-color: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(30, 32, 32, 0.4);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --instagram-color: #E1306C;
+  --email-color: #EA4335;
+  --telegram-color: #0088cc;
+}
+
+/* GAYA DASAR */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1518 100%);
+  filter: sepia(10%) brightness(90%);
+  z-index: 1;
+}
+
+/* NAVBAR (diperbaiki) */
+.container-navbar {
+  position: fixed;
+  top: 40px;
+  right: 195px;
+  z-index: 1000; /* Diperbaiki: z-index ditingkatkan */
+}
+
+.ul-navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: rgba(30, 32, 32, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 5px 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(113, 177, 233, 0.1);
+  gap: 5px;
+}
+
+.li-navbar {
+  margin: 0;
+  position: relative;
+}
+
+.li-navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  z-index: 10; /* Diperbaiki: menambahkan z-index */
+}
+
+.li-navbar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 177, 233, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.li-navbar a:hover::before {
+  left: 100%;
+}
+
+.li-navbar a:hover {
+  color: var(--primary-color);
+  background: rgba(113, 177, 233, 0.1);
+}
+
+/* TEKS DI POJOK KIRI ATAS */
+.top-left-text {
+  position: fixed;
+  top: 30px;
+  left: 50px;
+  z-index: 1000; /* Diperbaiki: z-index ditingkatkan */
+  perspective: 500px;
+}
+
+.top-left-text h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0px rgba(113, 177, 233, 0.4),
+    6px 6px 0px rgba(0, 0, 0, 0.2);
+  transform: rotateX(5deg) rotateY(-5deg) rotateZ(-1deg);
+  transition: var(--transition);
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(45deg, #ffffff 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgba(113, 177, 233, 0.5);
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  text-transform: uppercase;
+}
+
+.top-left-text h1::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(113, 177, 233, 0.8),
+    transparent
+  );
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.top-left-text h1:hover {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.05);
+  text-shadow: 3px 3px 5px rgba(113, 177, 233, 0.6),
+    8px 8px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CONTAINER KONTAK UTAMA - PERBAIKAN UTAMA */
+.contact-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.contact-card {
+  /* background: rgba(30, 32, 32, 0.8); Diperbaiki: properti dikembalikan */
+  /* backdrop-filter: blur(10px); Diperbaiki: properti dikembalikan */
+  border-radius: var(--border-radius);
+  padding: 40px;
+  /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); Diperbaiki: properti dikembalikan */
+  /* border: 1px solid rgba(113, 177, 233, 0.2); Diperbaiki: properti dikembalikan */
+  width: 100%;
+  max-width: 700px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h2 {
+  font-size: 2.5rem;
+  margin: 0 0 15px 0;
+  background: linear-gradient(45deg, #ffffff, var(--primary-color), #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s linear infinite;
+}
+
+.contact-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: rgba(30, 32, 32, 0.6);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(113, 177, 233, 0.3);
+}
+
+.icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 1.8rem;
+  transition: var(--transition);
+}
+
+.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+}
+
+.email {
+  background: linear-gradient(45deg, #ea4335, #d93025);
+  color: white;
+}
+
+.telegram {
+  background: linear-gradient(45deg, #0088cc, #00a8e8);
+  color: white;
+}
+
+.contact-item:hover .icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-info h3 {
+  font-size: 1.4rem;
+  margin: 0 0 5px 0;
+  color: var(--text-color);
+}
+
+.contact-info p {
+  margin: 0 0 10px 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.contact-link i {
+  margin-left: 8px;
+  transition: var(--transition);
+}
+
+.contact-link:hover {
+  color: var(--text-color);
+}
+
+.contact-link:hover i {
+  transform: translateX(5px);
+}
+
+.contact-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(113, 177, 233, 0.2);
+}
+
+.contact-footer p {
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ANIMASI */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* RESPONSIVITAS - PERBAIKAN */
+@media (max-width: 1024px) {
+  .contact-card {
+    padding: 30px;
+  }
+  
+  .contact-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .container-navbar {
+    right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-navbar {
+    right: 30px;
+    top: 20px;
+  }
+  
+  .ul-navbar {
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 10px;
+  }
+  
+  .li-navbar {
+    margin: 5px 0;
+  }
+  
+  .top-left-text {
+    left: 30px;
+    top: 80px;
+  }
+  
+  .top-left-text h1 {
+    font-size: 2rem;
+  }
+  
+  .contact-container {
+    padding: 15px;
+  }
+  
+  .contact-card {
+    padding: 25px;
+  }
+  
+  .contact-header h2 {
+    font-size: 2rem;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .icon-container {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-left-text {
+    left: 15px;
+    top: 70px;
+  }
+
+  .top-left-text h1 {
+    font-size: 1.5rem;
+  }
+  
+  .container-navbar {
+    right: 15px;
+    top: 15px;
+  }
+  
+  .ul-navbar {
+    padding: 8px;
+  }
+  
+  .contact-container {
+    padding: 10px;
+  }
+  
+  .contact-card {
+    padding: 20px 15px;
+  }
+  
+  .contact-header h2 {
+    font-size: 1.7rem;
+  }
+  
+  .icon-container {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .contact-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .contact-header p {
+    font-size: 0.95rem;
+  }
+}
